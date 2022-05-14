@@ -17,6 +17,13 @@ public class _01_Validate_Apple_Title {
         if (driver.getTitle().equals("Apple")) System.out.println("Apple title validation PASSED");
         else System.out.println("Apple title validation FAILED");
 
+
+        String expectedTitle = "Apple";
+        String actualTitle = driver.getTitle();
+
+        if(expectedTitle.equals(actualTitle)) System.out.println("Apple title validation PASSED");
+        else System.out.println("Apple title validation FAILED");
+
         System.out.println("End of the program");
 
         driver.quit();
