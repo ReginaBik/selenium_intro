@@ -14,7 +14,8 @@ public class Demo {
 
 
         //2.Maximize driver(browser)
-        driver.manage().window().maximize(); // we want to keep the whole screen
+        driver.manage().window().fullscreen(); // we want to keep the whole screen //or instead of fullscreen we can use
+        // driver.manage().window().maximize();
 
         //3.Define implicit wait
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); //u can put 60 as well
