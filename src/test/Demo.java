@@ -58,7 +58,7 @@ public class Demo {
 
 ** Quit driver:
         driver.close(); //this line closes only the current window
-        driver.quit(); //this line exits the driver, closing every associated windows, tabs, pop ups, etc.*/git add
+        driver.quit(); //this line exits the driver, closing every associated windows, tabs, pop ups, etc.*/
 
 
 
