@@ -21,10 +21,14 @@ public class _05_Locator_id {
 
             driver.get("https://www.techglobalschool.com");
 
-            WebElement logo = driver.findElement(By.id("img_comp-kuiqjide2"));
 
-            if(logo.isDisplayed()) System.out.println("The logo validation PASSED");
-            else System.out.println("Logo validation FAILED!!!");
+
+        WebElement companyQuote = driver.findElement(By.id("comp-kuiqjidf1"));
+
+        if(companyQuote.isDisplayed()) System.out.println("Company quote PASSED!");
+        else System.out.println("Company quote FAILED");
+
+        Driver.quitDriver();
 
 
 
