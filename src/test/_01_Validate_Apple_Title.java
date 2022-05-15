@@ -1,32 +1,25 @@
 package test;
 
-import driver.Driver;
+import utilities.Driver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
 
 public class _01_Validate_Apple_Title {
     public static void main(String[] args) {
-        WebDriver driver = Driver.getDriver();
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        driver.get("https://www.apple.com/");
-
-        if (driver.getTitle().equals("Apple")) System.out.println("Apple title validation PASSED");
-        else System.out.println("Apple title validation FAILED");
+            //1. Set up driver
+            WebDriver driver = Driver.getDriver();
 
 
-        String expectedTitle = "Apple";
-        String actualTitle = driver.getTitle();
+            //2. Validation
+            driver.get("https://www.apple.com/");
 
-        if(expectedTitle.equals(actualTitle)) System.out.println("Apple title validation PASSED");
-        else System.out.println("Apple title validation FAILED");
+            String expectedTitle = "Apple"; // from requirement
+            String actualTitle = driver.getTitle(); // from application under development
 
-        System.out.println("End of the program");
+            if(actualTitle.equals(expectedTitle)) System.out.println("Title validation PASSED");
+            else System.out.println("Title validation FAILED!!!");
 
-        driver.quit();
+            //3. Quit driver
+            Driver.quitDriver();
     }
 }

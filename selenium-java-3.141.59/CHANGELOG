@@ -59,7 +59,7 @@ v3.14.0
 * Completely removed the GSON dependency. We now use reflection to try
   and find the class.
 * Tiny clean up to try and make Grid a little more performant.
-* Added new capabilities for safari driver: automaticInspection and
+* Added new capabilities for safari utilities: automaticInspection and
   automaticProfiling (#6095) This commit is from the "Fix a Bug,
   Become a Committer" workshop held at SeConf India.
 * Removed support for geckodriver 0.13. It is time.
@@ -161,7 +161,7 @@ v3.8.1
 ======
 
 * Fixed Chrome mutator injecting null binary path into new session payload.
-* Added mutator that stips grid-specific capabilities hurting IE driver.
+* Added mutator that stips grid-specific capabilities hurting IE utilities.
 * Fixed SafariOptions construction from plain Capabilities object.
 
 v3.8.0
@@ -191,7 +191,7 @@ v3.7.1
   is low enough that the log does not look polluted. Geckodriver does
   not allow to separate its own log from the browser logs, so messages
   from the browser log can appear in the log even on the lowest level.
-* Avoid sending the shutdown command to driver services that don't
+* Avoid sending the shutdown command to utilities services that don't
   support it.
 * Add support for customizing the Grid Registry.
 
@@ -207,7 +207,7 @@ v3.7.0
   using the remote server through Capabilities. Notably, this allows
   the Safari Technology Preview to be used if it's installed.
 * Implemented the ability to configure the firefox log target using
-  the driver service builder or a system property. Logs are sent to
+  the utilities service builder or a system property. Logs are sent to
   the null output stream by default. Fixes #4136
 * Simulate some w3c Actions commands using the old APIs. This allows a
   local end that only speaks the JSON Wire Protocol to use
@@ -216,7 +216,7 @@ v3.7.0
 * More fluent APIs in `*Options` classes.
 * Moving some safari config options from `SafariOptions` to the
   `SafariDriverService`.
-* In Grid and Remote, force the use of the legacy Firefox driver when
+* In Grid and Remote, force the use of the legacy Firefox utilities when
   marionette flag is set.
 * The protocol handshake now uses a `CapabilityTransform` to convert
   an JSON Wire Protocol capability to one or more w3c
@@ -342,7 +342,7 @@ Important note:
   used as ExpectedConditions.
 * Start making *Option classes instances of Capabilities. This allows
   the user to do:
-  `WebDriver driver = new RemoteWebDriver(new InternetExplorerOptions());`
+  `WebDriver utilities = new RemoteWebDriver(new InternetExplorerOptions());`
 * Better handling of `getText` when confronted with a Shadow DOM
 * Better logging when using an Augmenter fails.
 * Make it easier to add new @FindBy annotations.
@@ -386,7 +386,7 @@ v3.3.0
        // For example purposes only
       .setProfile(new FirefoxProfile())
       .addTo(DesiredCapabilities.firefox());
-  WebDriver driver = new FirefoxDriver(caps);
+  WebDriver utilities = new FirefoxDriver(caps);
   ```
 * Stream New Session capabilities to disk before use to avoid eating
   every byte of available memory.
@@ -520,7 +520,7 @@ v3.0.0-beta2
 
 * maven packaging fixes
 * Update GeckoDriver --port argument in all bindings
-* System property webdriver.firefox.marionette now forces the server in marionette or legacy firefox driver mode, ignoring any related Desired Capability
+* System property webdriver.firefox.marionette now forces the server in marionette or legacy firefox utilities mode, ignoring any related Desired Capability
 * Grid fix NPE's on registration when -browser not specified
 
 v3.0.0-beta1
@@ -553,7 +553,7 @@ v2.53.0
 
 FINAL 2.X RELEASE.
 
-No more HtmlUnitDriver... Moved to a subproject https://github.com/SeleniumHQ/htmlunit-driver
+No more HtmlUnitDriver... Moved to a subproject https://github.com/SeleniumHQ/htmlunit-utilities
 
 Java:
     * Query Selenium Server to retrieve actual running port.  Fixes #1299
@@ -602,7 +602,7 @@ Firefox:
     * Deleting unused method FirefoxBinary.createProfile
 
 WebDriver:
-    * Fixing httpOnly cookies in HtmlUnit driver
+    * Fixing httpOnly cookies in HtmlUnit utilities
     * Adding close connection support to HttpClient to combat hanging open files Fixes #1080
     * Increasing log buffer max size
     * optimize JsonToBeanConverter In case the input is a JsonNull, return null asap.
@@ -630,7 +630,7 @@ WebDriver:
     * Firefox: fixing malformed URL handling. Fixed issue #1248
     * Prevent Firefox from opening a page on a second or later run and/or after some amount of time
     * Fixing executable finder on Windows
-    * Fixing HtmlUnit driver to pass recently added tests
+    * Fixing HtmlUnit utilities to pass recently added tests
     * Firefox: fixing appending to contenteditable elements. Fixes issue 1419
     * correct javascript remote client ui executor to use new promise based execute introduced by 0fa587 Fixes #1521
     * Firefox: Adding an extra check to result wrapper. Fixes issue #1426
@@ -657,7 +657,7 @@ WebDriver:
     * Add maven coordinate for the Firefox Driver when built using Buck.
     * Remove guava dep on the selenium-apis when built using Buck.
     * on osx for firefox, fallback to checking homebrew install, if the default isn't there
-    * Pass Options.ime() through to the wrapped driver.
+    * Pass Options.ime() through to the wrapped utilities.
     * Fixing HTML suite test runner
     * Bump guava to version 19
     * Ensure that the buck-built core library has no third party dependencies.
@@ -665,11 +665,11 @@ WebDriver:
     * Adding appropriate wait to AuthenticatedPageLoadingTest
     * Refactor concrete WebDriverException#getSupportUrl's
     * Fix a NullPointerException in RemoteWebDriver.getCurrentUrl
-    * Reduces time wasted in when using a native driver
+    * Reduces time wasted in when using a native utilities
     * add the useful information about the session / capabilities in the exception when the 'browser may have died'
     * give the cleaner almost double the time to clean up the sessions (a whopping 9 more ms). Hopefull will deflake this test in CI.
     * Adding El Capitan (OS X 10.11) to Platform
-    * Updating IE driver to fix clearing of <input type='number'> fields
+    * Updating IE utilities to fix clearing of <input type='number'> fields
     * Treat a null response to getCookies as [].
     * Restore a isNativeEventsEnabled check.
     * Updating TestNG.
@@ -746,7 +746,7 @@ WebDriver:
     * Firefox: implementing mouse doubleclick action via nsIDOMWindowUtils
     * Add FluentWait.withMessage with string supplier
     * Firefox: fixing events generated as a result of click on an element that disappears after the click.
-    * Firefox: implementing mouse up/down actions via nsIDOMWindowUtils. This makes mouse actions "more native". In particular, if there are overlapping element at the click point, the driver will click the topmost element.
+    * Firefox: implementing mouse up/down actions via nsIDOMWindowUtils. This makes mouse actions "more native". In particular, if there are overlapping element at the click point, the utilities will click the topmost element.
     * Safari: stop embedding the extension in the client libs, it should be downloaded and installed manually.
     * Deleting a couple of redundant casts
     * No need to cast, the variable has required type already
@@ -756,7 +756,7 @@ WebDriver:
     * HtmlUnit: Unignoring a magically working test
     * HtmlUnit: restoring backward compatibility after changes in getCurrentUrl semantics
     * WDBC: restoring backward compatibility after changes in getCurrentUrl semantics
-    * Deleting native events from firefox driver
+    * Deleting native events from firefox utilities
     * Deleting outdated assumes for unsupported Firefox version
     * Resorting tests for moveByOffset action
     * Firefox: don't dispatch keypress event if defaultPrevent() of the keydown event is called because KEY_FLAG_PREVENT_DEFAULT has no effect
@@ -778,7 +778,7 @@ WebDriver:
     * remove unused css transform code from location in view
     * use BasicHttpRequest instead of EnclosingRequest
     * htmlunit passes the httponly cookie test
-    * fix maven dependency of htmlunit driver on the support package
+    * fix maven dependency of htmlunit utilities on the support package
     * don't replace a platform specified to the add browser method, like the TODO says
     * Simulating submit operation for standard compliant drivers
     * Making sendKeys more backward compatible (because i18n tests)
@@ -800,12 +800,12 @@ WebDriver:
     * HtmlUnitMouse: no need to .focus()
     * Fix HtmlUnitWebElement.getCssValue
     * AMO requires the max version be an actual release version number
-    * Correcting IE driver build process to create executables runnable on Windows XP Fixes issue #936.
+    * Correcting IE utilities build process to create executables runnable on Windows XP Fixes issue #936.
     * Improve comments and error message on scrolling_test#testScrollingAccountsForScrollbarWidths.
     * Java client side support for launch_app command of chromedriver:
     * Add "additionalCommands" support to DriverCommandExecutor.
     * Use directExecutor().
-    * Updating IE driver C++ code to use Visual Studio 2015.
+    * Updating IE utilities C++ code to use Visual Studio 2015.
 
 Grid:
     * Run grid tests using Buck.
@@ -829,12 +829,12 @@ WebDriver:
 * Added TakesScreenshot to WebElement.
 * (provided by Microsoft) Added language bindings for Microsoft Edge browser
 * Make it possible for users to override how the Lock is obtained with Firefox.
-* (provided by Ahmed Ashour) Added implementation of Alert for HtmlUnit driver.
-* (provided by Ahmed Ashour) Fixed findElementByXPath for HtmlUnit driver to
+* (provided by Ahmed Ashour) Added implementation of Alert for HtmlUnit utilities.
+* (provided by Ahmed Ashour) Fixed findElementByXPath for HtmlUnit utilities to
   work for XML pages.
-* (provided by Ahmed Ashour) Fixed HtmlUnit driver to allow for manipulating
+* (provided by Ahmed Ashour) Fixed HtmlUnit utilities to allow for manipulating
   elements in SVG documents.
-* (provided by Ahmed Ashour) Fixed HtmlUnit driver so that deleteAllCookies
+* (provided by Ahmed Ashour) Fixed HtmlUnit utilities so that deleteAllCookies
   deletes cookies only for the current domain, matching other implementations.
 * (provided by Tamás Buka) Created an overload to
   ExpectedConditions.frameToBeAvailableAndSwitchToIt support to index and
@@ -862,16 +862,16 @@ Server:
 * Added a guard that prevents starting "IE instead of Opera" (or some other
   unwanted browser that obviously does not match the desired capabilities).
   Previously if a new session request is forwarded to a node it results in a
-  driver instance creation in any case. For example, let's suppose a user
+  utilities instance creation in any case. For example, let's suppose a user
   starts a node with -browser browserName=opera option, and there is no
-  operadriver in the classpath. Then the user requests a new remote driver with
+  operadriver in the classpath. Then the user requests a new remote utilities with
   browserName=opera. The hub forwards the request to the node, and the node
-  attempts to find the "best matching" driver provider. As far as opera is not
+  attempts to find the "best matching" utilities provider. As far as opera is not
   available, it can start any other browser. Because "best matching" does not
   imply matching. The new guard prevents this unwanted behavior.
 
 Grid:
-* Added support to grid for Microsoft Edge driver
+* Added support to grid for Microsoft Edge utilities
 * (provided by Dima Kovalenko) Sort Grid Proxies in order of least busy to
   busiest. This should prevent situation where one node is running multiple
   sessions while several nodes are completely idle.
@@ -894,11 +894,11 @@ Important changes in this release:
   (current release and current ESR).
 * Remove all support from both webdriver and RC for Presto-based
   Opera. Blink-based Opera is still supported!
-* Added beta Marionette driver (for Firefox OS and recent desktop
+* Added beta Marionette utilities (for Firefox OS and recent desktop
   releases).
 * Fixing critical selenium server error caused by a user registering a
-  driver class compiled with a higher Java version than the server is
-  running (eg: server runs with Java 7, but the driver is comopiled to
+  utilities class compiled with a higher Java version than the server is
+  running (eg: server runs with Java 7, but the utilities is comopiled to
   target Java 8)
 * FirefoxDriver: now supported on OpenBSD (added by minusf@gmail.com)
 * HtmlUnitDriver: Updated to HtmlUnit 2.17. Requires Java 7 or above to work.
@@ -971,7 +971,7 @@ Other changes:
 * improve ByCssSelector#toString
 * Remove automatic installation of the SafariDriver in Java.
 * Complete Selenium Java Server support for Blink based Opera
-* Upgrading PhantomJS driver
+* Upgrading PhantomJS utilities
 * Pull HttpClient implementation details out of HttpCommandExecutor.
 * Fix issue 8254: Extensions were incorrectly transferred between
   Windows client and Linux grid node, because ZipEntry had incorrect
@@ -1019,7 +1019,7 @@ v2.44.0
   * Fixing SessionId from json converter to better handle the case of null sessionId
   * Fix the Eclipse config. The new gson dependency wasn't added. Now is :) Also switched a call in HtmlUnitWebElement to use guava rather than commons-lang since that's already included in the build configs for both Buck and CrazyFun.
   * Get the Buck build working again.
-  * HtmlUnit: add text to the end of input fields. This makes the htmlunit driver work as the other drivers do.
+  * HtmlUnit: add text to the end of input fields. This makes the htmlunit utilities work as the other drivers do.
   * HtmlUnit: Fix getAttribute for dynamic properties.
   * Enable Html5CapabilitiesTest for HtmlUnit
   * Fix classpath for running tests in eclipse This allows the htmlunitdriver tests to run in Eclipse.
@@ -1049,7 +1049,7 @@ WebDriver:
   * Make event_firing_test.html pass in Firefox 24 ESR.
   * Fix an error propagation bug when a command fails from bad inputs.
   * Handle the case where a proxied element from PageFactory causes a FluentWait to timeout.
-  * Integrating the Microsoft Internet Explorer driver implementation
+  * Integrating the Microsoft Internet Explorer utilities implementation
   * Allow subclasses of HttpCommandExecutor to extend it at runtime.
   * Handle the case where executeScript returns an HTMLDocument.
   * IEDriver crashes in WaitUntilElementFocused() because of null pointer. Fixes issue #7577
@@ -1060,7 +1060,7 @@ WebDriver:
     deprecated.
   * Run FirefoxDriver tests with Buck.
   * Bump timeout for tests since a suite is also a test.
-  * Run htmlunit-driver tests with Buck.
+  * Run htmlunit-utilities tests with Buck.
   * Run the ignored tests printer with Buck.
   * Get org.openqa.selenium.SmallTests building with Buck.
   * Working around limitations in subpixel precision event handling.
@@ -1101,20 +1101,20 @@ WebDriver:
     Fixes issue 7593
   * Updating json-cpp lib and replacing mongoose web server with civetweb.
   * Safari is flaky. Reducing timeout to fail faster when we're going to fail.
-  * Catch driver start-up failures.
+  * Catch utilities start-up failures.
   * Add explicit API for configuring log prefs rather than forcing users to rely on
     magic capability strings.
   * Clean up internal Firefox logging API.
   * Use LogLevelMapping to convert JSON wire protocol name to Level instance.
   * Make the jettyMaxThreads parameter actually be effective
   * Fix NullPointerException when File#listFiles() returns null. Fixes issue #1934
-  * Making WDBS.start command a no-op if it was instantiated with an already started driver. Fixes issue 3993
+  * Making WDBS.start command a no-op if it was instantiated with an already started utilities. Fixes issue 3993
   * Handling possible exception in stringification of window.location. Fixes issue 3908
-* Modified IE driver server to more closely follow W3C spec
+* Modified IE utilities server to more closely follow W3C spec
 
-    This commit includes a number of changes designed to bring the IE driver
+    This commit includes a number of changes designed to bring the IE utilities
     into closer alignment with the W3C WebDriver specification. It provides
-    no functional changes to the driver, nor does it change any external-
+    no functional changes to the utilities, nor does it change any external-
     facing API. The changes are:
      * Changed webdriver::Server to examine the response from the newSession
        command for the session ID rather than a two-stage process. The
@@ -1147,9 +1147,9 @@ WebDriver:
   * Setting HtmlUnit to emulate FF24 by default
   * Updating HtmlUnit to 2.15
   * Stop polluting the log with stacktraces. Fixes issue 7460
-  * Returning less specific platform info from firefox driver. Fixes issue 3354
-  * Adding driver info into TimeoutException thrown by WebDriverWait. Fixes issue 7429
-  * Implementing switchToParentFrame command for IE driver
+  * Returning less specific platform info from firefox utilities. Fixes issue 3354
+  * Adding utilities info into TimeoutException thrown by WebDriverWait. Fixes issue 7429
+  * Implementing switchToParentFrame command for IE utilities
   * Adding URL endpoint for switchToParentFrame
 
 v2.42.2
@@ -1186,23 +1186,23 @@ WebDriver:
   * Click after move with offset should use last mouse position
   * Adding new interface methods to the stubs
   * Preserve wrapped test function's string representation for Mocah's BDD interface.
-  * Fixing IE driver to allow JavaScript objects with property names with spaces
+  * Fixing IE utilities to allow JavaScript objects with property names with spaces
   * Ignoring IE6-only test failure for CSS
   * Bump the hmltunit version to 2.14
   * Remove a class of our which replicates HTTP status codes already given meaningful names in the standard JRE.
   * Updating version match for native libs in firefox plugin manifest file
   * Updating native events dll for FF28
-  * Implement ability to load driver providers using ServiceLoader. A user can add new providers or override existing ones. To use this ability a user should:
-  * Refactoring the process of driver instances creation to use a new DriverProvider interface. DefaultDriverProvider wraps the current logic -- creating instances using reflection. This is a step to implement ability to load additional providers using ServiceLoader that can add new providers or override existing ones.
+  * Implement ability to load utilities providers using ServiceLoader. A user can add new providers or override existing ones. To use this ability a user should:
+  * Refactoring the process of utilities instances creation to use a new DriverProvider interface. DefaultDriverProvider wraps the current logic -- creating instances using reflection. This is a step to implement ability to load additional providers using ServiceLoader that can add new providers or override existing ones.
   * Ruby: Fix for extensions whose install.rdf uses an attribute for em:id (issue 5978)
   * fixes issue for locating newly installed chrome versions
-  * Fixing IE driver crash when clicking on link that opens a new window.
+  * Fixing IE utilities crash when clicking on link that opens a new window.
   * Properly configure the http client in the presence of user credentials.
   * java json converter chooses Long (Number base class). Fixing RemoteNetworkConnection
   * SUPPORTS_BROWSER_CONNECTION was removed, missed a reference
   * Clean up use deprecated methods & classes.
   * ElementNotVisibleException is a type of InvalidElementStateException.
-  * Tweak messaging on SafariDriver client page to better reflect what is happening. Also added a log message pointing users to the toolbar button that opens the driver log page.
+  * Tweak messaging on SafariDriver client page to better reflect what is happening. Also added a log message pointing users to the toolbar button that opens the utilities log page.
   * Remove some no-op calls to deprecated functions.
   * Pull the logic for converting Command/Response pairs to and frame HTTP request/response pairs into a common codec instead of duplicating the logic on the client and server.
   * Change some tests to use Alert#accept() instead of Alert#dismiss() to get rid of alert dialogs. This is a workaround to ChromeDriver issue 764:
@@ -1260,9 +1260,9 @@ WebDriver:
 
  * Fixed capabilities to be sent properly encoded. For instance,
    capabilities for mobile have copyright signs.
- * Renamed some commands in the Firefox driver to prepare for Selenium
+ * Renamed some commands in the Firefox utilities to prepare for Selenium
    3. This essentially means that we're mirroring the names of the
-   commands in the function names within the driver. Also implemented
+   commands in the function names within the utilities. Also implemented
    handling a Selenium 3 style "sessionId" in a Command received by a
    Selenium 2 server.
  * Implemented support for switching context as described here:
@@ -1287,7 +1287,7 @@ WebDriver:
    using the ChromeDriverService class. This is analogous to the
    existing system property for controlling verbose mode.
  * (on behalf of Yi Zeng): Updated download link to googleapis.com
- * Reduced the visibility of a deprecated class in the htmlunit driver.
+ * Reduced the visibility of a deprecated class in the htmlunit utilities.
  * Removed deprecated FirefoxProfile.setProxyPreferences method.
  * Removed deprecated ChromeOptions.setExperimentalOptions
  * FIXED: 4843: (on behalf of Jonatan Kronqvist): Regard all modifier
@@ -1318,7 +1318,7 @@ Grid:
    behavior (255 threads from Jetty's default settings)
  * FIXED 6773: Consuming the request in all cases to properly release
    resources.
- * FIXED: 6811: Clean up immediately if starting a driver or session
+ * FIXED: 6811: Clean up immediately if starting a utilities or session
    errors in RemoteWebDriver.
  * FIXED: 6878: Actually pass the response body to CommandListener
    implementations, per the interface contract.
@@ -1335,12 +1335,12 @@ v2.40.0
 WebDriver:
  * Update to support native events for Firefox 27 (removed native event
    support for Firefox 25).
- * Removed the iPhone driver. Also leaving the atoms available, so that
+ * Removed the iPhone utilities. Also leaving the atoms available, so that
    appium and iosdriver can use them.
  * Deleted the client side of the AndroidDriver. Note that the atoms
    are still left in place so that Selendroid can still be compiled.
  * Make the RemoteWebDriver implement TakesScreenshot. There's only one
-   driver that doesn't implement the interface (the HtmUnitDriver) and
+   utilities that doesn't implement the interface (the HtmUnitDriver) and
    this is the most common cause for using the Augmenter, which isn't
    very discoverable.
  * Imported PhantomJSDriver 1.1.0, removing 1.0.4 (previous version).
@@ -1416,7 +1416,7 @@ v2.39.0
 =======
 WebDriver:
  * Update to support native events for Firefox 26.
- * Removed server side of iPhone driver.
+ * Removed server side of iPhone utilities.
  * Removed server-side of AndroidDriver and deprecating client side.
 
 WebDriverJS:
@@ -1457,7 +1457,7 @@ WebDriver:
     documentElement has fixed position.
   * Improveed logging for UnixProcess#destroy().
   * If an error is thrown while typing a key sequence, return that
-    error to the client. Prior to this change, the driver would
+    error to the client. Prior to this change, the utilities would
     effectively hang.
   * Do not attempt to generate a key event if the target element is no
     longer attached to the DOM. nsIPressShell (which is used to
@@ -1475,7 +1475,7 @@ WebDriver:
     in WDBS.
   * FIXED: 6358: Disabled Content Security Policy in Firefox.
   * FIXED: 6414: Fixed the way EventFiringWebDriver unwraps the
-    underlying driver.
+    underlying utilities.
   * FIXED: 6431: Catch an exception thrown if the chrome executable is
     not found and stop chromedriver before propagating it.
   * FIXED: 6445: Shortened Firefox profile textual representation in
@@ -1530,13 +1530,13 @@ WebDriver:
     version capabilities are not set.
   * Stop propagation of the webdriver-evaluate custom event when
     executing user supplied JavaScript. Without this change, the event
-    handler will trigger twice for async scripts, causing the driver to
+    handler will trigger twice for async scripts, causing the utilities to
     attempt to evaluate the user script twice, leading to unpredictable
     behavior.
   * Added a new pause action to the interactions API.
   * Improved support for using the HTML5 APIs through the remote
-    server by augmenting the session driver before attempting to
-    access HTML5 capabilities.  If the driver does not support the
+    server by augmenting the session utilities before attempting to
+    access HTML5 capabilities.  If the utilities does not support the
     requested feature, throw an UnsupportedCommandException instead of
     a ClassCastException.
   * Implemented elementScrollBehavior capability in FirefoxDriver.
@@ -1584,7 +1584,7 @@ WebDriver:
     resolver.
 
 WebDriver JS:
-  * FIXED: 6079: The parent process should not wait for spawned driver
+  * FIXED: 6079: The parent process should not wait for spawned utilities
     service processes (chromedriver, phantomjs, etc.)
 
 v2.34.0
@@ -1608,7 +1608,7 @@ WebDriver:
   * Fall back to a loopback address if the current machine does not
     have an external IP address (as will be the case when there is no
     internet connection).
-  * Remove sizzle dependency from the firefox driver. We only needed
+  * Remove sizzle dependency from the firefox utilities. We only needed
     this for versions of firefox prior to 3.5, which we no longer
     support.
   * Fixed Select.escapeQuotes method.
@@ -1621,14 +1621,14 @@ WebDriver:
   * Fixed condition in Select.select_by_index method to fix case when
     selection is performed by index on a multiple select element.
   * Implemented an alpha version of a Marionette (WebDriver implemented
-    natively in Firefox) driver.
+    natively in Firefox) utilities.
   * Deprecated IPhoneDriver.
   * Added support for the HTML5 "hidden" attribute. If an element, or
     ancestor, has hidden attribute make, it is not shown.
   * FIXED: 2285: Allow setting default logLevel for standalone-server.
   * FIXED: 5609: Adding the ability to redirect firefox process output
     to file.
-  * FIXED: 5669: Add Driver#remote_status for the Ruby remote driver.
+  * FIXED: 5669: Add Driver#remote_status for the Ruby remote utilities.
   * FIXED: 5715: Adding toString method for the event firing
     webelement.
 
@@ -1690,7 +1690,7 @@ WebDriver:
 
 WebDriver JS:
   * FIXED: 5511: Implement
-    driver.manage().timeouts().pageLoadTimeout(ms) for WebDriverJs.
+    utilities.manage().timeouts().pageLoadTimeout(ms) for WebDriverJs.
   * FIXED: 5632: It's now possible to create a new session with
     WebDriverJs when running in a browser.
   * Add a WebDriverJs client to the SafariDriver's logging window so
@@ -1793,7 +1793,7 @@ v2.29.0
 WebDriver:
   * Firefox 18 support.
   * IEDriver supports "requireWindowFocus" desired capability. When
-    using this and native events, the IE driver will demand focus and
+    using this and native events, the IE utilities will demand focus and
     user interactions will use SendInput() for simulating user
     interactions. Note that this will mean you MUST NOT use the
     machine running IE for anything else as the tests are running.
@@ -1854,7 +1854,7 @@ WebDriver:
   * Added support for native events for Firefox 17.
   * Added support for ghostdriver (PhantomJS)
   * Adding new capability "enableElementCacheCleanup" to the IE
-    driver. When set to true, the IE driver will clean the
+    utilities. When set to true, the IE utilities will clean the
     known-element cache of invalid elements after every page
     load. This is intended to keep memory usage down and improve
     performance. However, it is an intrusive change, so this
@@ -1862,7 +1862,7 @@ WebDriver:
     behavior if problems arise. The default of this new capability is
     "true", meaning this behavior is turned on by default.
   * Added shift key handling to the synthetic keyboard actions.
-  * Modifying scroll behavior in IE driver SendKeysCommandHandler to
+  * Modifying scroll behavior in IE utilities SendKeysCommandHandler to
     call Element::GetLocationOnceScrolledIntoView() instead of calling
     the DOM scrollIntoView() function. Should result in less page
     scrolling during test runs.
@@ -1912,7 +1912,7 @@ WebDriver:
   * Increased lock time a bit for the FirefoxDriver to make tests more
     stable on Windows.
   * Added the enablePersistenHover capability to allow the user to specify
-    whether to use the persistent hover thread in the IE driver. Defaults
+    whether to use the persistent hover thread in the IE utilities. Defaults
     to true for IE.
   * Added support for native events for Firefox 15 and 16.
   * Removed deprecation from ChromeDriver constructors that take a Capabilities
@@ -1952,12 +1952,12 @@ v2.25.0
 WebDriver:
   * Added API for dealing with BASIC and DIGEST authentication
     dialogs. Currently not implemented in any drivers.
-  * Warn users that the IE driver will no longer use the DLL in the
+  * Warn users that the IE utilities will no longer use the DLL in the
     next release.
   * Deprecated browser specific WebElement subclasses.
   * Added support for "requiredCapabilities" to the remote webdrivers
     and implemented basic support for these in the firefox
-    driver. Failure to fulfull a required capability will cause a
+    utilities. Failure to fulfull a required capability will cause a
     SessionNotCreatedException to be thrown.
   * Added the ability to determine how unhandled alerts should be
     handled. This is handled by the "unexpectedAlertBehaviour"
@@ -1967,10 +1967,10 @@ WebDriver:
   * Allow native events to be configured in Firefox and
     (experimentally) in IE using the "nativeEvents" capability.
   * Updated supported versions of Firefox to 17.
-  * Firefox driver will enumerate through client rects until finding
+  * Firefox utilities will enumerate through client rects until finding
     one with non-zero dimensions when clicking.
   * Better support for hovering on linux.
-  * Safari driver will dismiss open alerts to prevent tests from
+  * Safari utilities will dismiss open alerts to prevent tests from
     hanging.
   * Better handling of overflow edge cases when determining element
     visibility.
@@ -1978,7 +1978,7 @@ WebDriver:
     file:// URL.
   * Allowed to use IEDriverServer logging abilities in Java binding.
   * Avoid an issue where a call to submit could hang the firefox
-    driver.
+    utilities.
   * FluentWait will now handle any Throwable, not just
     RuntimeExceptions.
   * FIXED: 3897: Allow windows to be resized from a frame.
@@ -2034,7 +2034,7 @@ WebDriver:
   * Firefox 13 support
   * CSS Selectors now allow compound selectors
   * SafariDriver is (still) in Beta, annotated accordingly in Java
-  * FIXED: 3785: Implicit waits for Safari driver
+  * FIXED: 3785: Implicit waits for Safari utilities
   * FIXED: 1225: Get text is handled appropriately for self-closing tags.
 
 v2.22.0
@@ -2046,7 +2046,7 @@ Project:
 
 WebDriver:
   * JRE dependency upped to Java 6.
-  * IE driver now uses the IEDriverServer. You may need to download
+  * IE utilities now uses the IEDriverServer. You may need to download
     this. Set the "useLegacyInternalServer" to boolean true if you
     need the old behaviour.
   * Standardized colour values returned from getCssValue are
@@ -2093,8 +2093,8 @@ WebDriver:
   * Issue 3489, maximize the browser window
   * Significant stability improvements in firefoxdriver.
   * Issue 3357 log-path for chromedriver
-  * IE driver issue 3360
-  * Android driver issue 3504
+  * IE utilities issue 3360
+  * Android utilities issue 3504
   * Firefox issue 3559, max-connections-per-server
   * Issue 3520
   * Issue 2826
@@ -2132,7 +2132,7 @@ WebDriver:
   * Introduce a timeout for page loads. This needs to be used in
     conjunction with the unstable page load detection.
   * Adding alertIsPresent ExpectedCondition.
-  * Turning off password saving in the Android driver.
+  * Turning off password saving in the Android utilities.
   * FIXED: 3391: scroll containing elements, not just windows.
   * FIXED: 2211: Allow the http client factory to discover the proxy
     for traffic between the http command executor and the webdriver
@@ -2173,7 +2173,7 @@ WebDriver:
   * Server-side implementation of the webdriver-backed selenium.
   * "sendKeys" works in the webdriver-backed selenium when using
     safari.
-  * Implement local/session storage for iOS driver.
+  * Implement local/session storage for iOS utilities.
   * Exceptions now thrown when an alert occurs during script
     execution.
   * Native events implemented for Firefox 10.
@@ -2270,7 +2270,7 @@ WebDriver:
   * Native events enabled for Firefox 9
   * The FirefoxDriver now enables apps to use offline storage by
     default.
-  * ChromeDriver allows setting the chrome driver's environment more
+  * ChromeDriver allows setting the chrome utilities's environment more
     easily.
   * RemoteWebElement implementations now guarantee that the ID used to
     identify them. This allows "hashCode" and "equals" to be local
@@ -2357,8 +2357,8 @@ WebDriver:
   * Client code cleaned to work with Java 5. Server code needs Java 6.
   * Added a front-end for executing WebDriverJS scripts. Point a
     browser at http://localhost:4444/wd/hub.
-  * Can now query an Android driver for supported capabilities.
-  * Updated JSON framework used in the iOS driver.
+  * Can now query an Android utilities for supported capabilities.
+  * Updated JSON framework used in the iOS utilities.
   * Fixed issue with scrolling on small viewports with native events
     in Firefox.
   * FIXED: 2889: FluentWait supports adding a custom message to
@@ -2392,12 +2392,12 @@ Dependency change:
     If you resolve via maven central (maven, ivy, gradle), this will
     be handled automatically.
 WebDriver:
-  * Recovering from null window references in the Firefox driver (#1438)
+  * Recovering from null window references in the Firefox utilities (#1438)
   * Make native events work correctly on Linux with the Python bindings (#2633)
   * Improved finding Firefox on Windows in the C# bindings (2818)
   * Screenshots in Python are now working (2829)
   * Exporting webdriver.promise from the Javascript API (2839)
-  * Permission denied accessing some elements using the Firefox driver (2863)
+  * Permission denied accessing some elements using the Firefox utilities (2863)
   * Fixed typing into content editable elements with Firefox (2.12 regression)
   * Firefox is started in the forgeground on OS X. Focus / blur events now have
     higher chance of firing correctly on OS X.
@@ -2410,10 +2410,10 @@ Grid:
   * Releasing all the resources when a proxy is removed from the hub (#2768).
 
 Known issues:
-  * Synthesized mouse events are inaccurate (Affects Firefox driver users
+  * Synthesized mouse events are inaccurate (Affects Firefox utilities users
     on OS X) (2281)
   * Invalid move target out of bounds exception thrown.2700
-  * Dragged elements end up in the wrong location, with the Firefox driver,
+  * Dragged elements end up in the wrong location, with the Firefox utilities,
     when scrolling is required (typically with small viewport) (2877)
 
 v2.12.0
@@ -2573,7 +2573,7 @@ WebDriver
   * Bumped included version of OperaDriver to 0.7.1.
   * Attempt to address issue #1443 (the infamous "getWindow() == null" problem)
   * Added timing information to WebDriver exceptions resulting from command
-    invocations in the remote driver.
+    invocations in the remote utilities.
   * Added an ExpectedConditions class with common ExpectedCondition
     implementations.
   * Better usage of sockets in the remote webdriver
