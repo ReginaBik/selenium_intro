@@ -1,5 +1,6 @@
 package test;
 
+import driver.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -27,7 +28,7 @@ public class _03_Selenium_Navigations {
         public static void main(String[] args) throws InterruptedException {
             //1. Set up driver
             System.setProperty("webdriver.chrome.driver", "/Users/techglobal/IdeaProjects/selenium_intro/chromedriver");
-            WebDriver driver = new ChromeDriver();
+            WebDriver driver = Driver.getDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 

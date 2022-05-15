@@ -1,5 +1,6 @@
 package test;
 
+import driver.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class _02_Validate_Apple_URL {
     public static void main(String[] args) {
 
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = Driver.getDriver();
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
