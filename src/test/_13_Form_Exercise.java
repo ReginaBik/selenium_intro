@@ -37,8 +37,6 @@ Validate "SUBSCRIBE" button with its text
         System.out.println(emailNameInputBox.getAttribute("placeholder").equals("Add your email") ? "Email input box validation PASSED" : "Email input box validation FAILED");
         System.out.println(subscribeButton.isDisplayed() && subscribeButton.isEnabled() && subscribeButton.getText().equals("SUBSCRIBE") ? "Subscribe button validation PASSED" : "Subscribe button validation FAILED");
 
-
-
         Driver.quitDriver();
 
     }
