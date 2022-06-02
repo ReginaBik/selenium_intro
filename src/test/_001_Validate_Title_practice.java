@@ -29,6 +29,10 @@ public class _001_Validate_Title_practice {
         if(appleLogo.isEnabled()) System.out.println("It is enabled");
         else System.out.println("it is NOT enabled");
 
+        //Practice 4 LOCATORS by id, xPath, CSS
+
+
+
 
         driver.quit();
 
