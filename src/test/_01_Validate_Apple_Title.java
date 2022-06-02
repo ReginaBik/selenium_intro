@@ -19,6 +19,8 @@ public class _01_Validate_Apple_Title {
             if(actualTitle.equals(expectedTitle)) System.out.println("Title validation PASSED");
             else System.out.println("Title validation FAILED!!!");
 
+
+
             //3. Quit driver
             Driver.quitDriver();
     }
